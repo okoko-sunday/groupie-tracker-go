@@ -111,53 +111,6 @@ func FetchRelation()(models.RelationResponse, error){
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 //1  the function name will change which is FetchArtists
 //2 the input parameter will chnage which is []models.Artist
