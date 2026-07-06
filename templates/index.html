@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groupie Tracker</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1>🎵 Groupie Tracker</h1>
+        <p>Discover legendary artists and bands from around the world.</p>
+    </header>
+
+    <main class="container">
+
+        <section class="artist-list">
+
+            {{range .}}
+            <article class="artist-card">
+
+                <img class="artist-image"
+                     src="{{.Image}}"
+                     alt="{{.Name}}">
+
+                <h2 class="artist-name">{{.Name}}</h2>
+
+                <p>
+                    <strong>First Album:</strong>
+                    {{.FirstAlbum}}
+                </p>
+
+                <p>
+                    <strong>Creation Year:</strong>
+                    {{.CreationDate}}
+                </p>
+
+                <h3>Members</h3>
+
+                <ul class="members">
+
+                    {{range .Members}}
+
+                    <li>{{.}}</li>
+
+                    {{end}}
+
+                </ul>
+
+            </article>
+
+            {{end}}
+
+        </section>
+
+    </main>
+
+</body>
+</html>

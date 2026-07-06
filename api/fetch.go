@@ -7,56 +7,52 @@ import (
 	"net/http"
 )
 
-
 const (
-	artistsURL = "https://groupietrackers.herokuapp.com/api/artists"
+	artistsURL  = "https://groupietrackers.herokuapp.com/api/artists"
 	locationURL = "https://groupietrackers.herokuapp.com/api/locations"
-	datesURL = "https://groupietrackers.herokuapp.com/api/dates"
+	datesURL    = "https://groupietrackers.herokuapp.com/api/dates"
 	relationURL = "https://groupietrackers.herokuapp.com/api/relation"
 )
 
-func FetchArtists()([]models.Artist, error){
+func FetchArtists() ([]models.Artist, error) {
 
 	resp, err := http.Get(artistsURL)
-	if err != nil{
+	if err != nil {
 		return nil, err
 	}
 
 	defer resp.Body.Close()
 
-
-	if resp.StatusCode != http.StatusOK{
+	if resp.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("Unexpected status code: %s", resp.Status)
 	}
 
 	var artists []models.Artist
 
 	err = json.NewDecoder(resp.Body).Decode(&artists)
-	if err != nil{
+	if err != nil {
 		return nil, err
 	}
 
 	return artists, nil
 }
 
+func FetchLocation() (models.LocationResponse, error) {
 
-
-func FetchLocation()(models.LocationResponse, error){
-	
 	resp, err := http.Get(locationURL)
-	if err != nil{
+	if err != nil {
 		return models.LocationResponse{}, err
 	}
 	defer resp.Body.Close()
 
-	if resp.StatusCode != http.StatusOK{
+	if resp.StatusCode != http.StatusOK {
 		return models.LocationResponse{}, fmt.Errorf("Unexpected status code: %s", resp.Status)
 	}
 
 	var locations models.LocationResponse
 
 	err = json.NewDecoder(resp.Body).Decode(&locations)
-	if err != nil{
+	if err != nil {
 		return models.LocationResponse{}, err
 	}
 
@@ -64,23 +60,22 @@ func FetchLocation()(models.LocationResponse, error){
 
 }
 
+func FetchDate() (models.DateResponse, error) {
 
-func FetchDate()(models.DateResponse, error){
-	
 	resp, err := http.Get(datesURL)
-	if err != nil{
+	if err != nil {
 		return models.DateResponse{}, err
 	}
 	defer resp.Body.Close()
 
-	if resp.StatusCode != http.StatusOK{
+	if resp.StatusCode != http.StatusOK {
 		return models.DateResponse{}, fmt.Errorf("Unexpected status code: %s", resp.Status)
 	}
 
 	var dates models.DateResponse
 
 	err = json.NewDecoder(resp.Body).Decode(&dates)
-	if err != nil{
+	if err != nil {
 		return models.DateResponse{}, err
 	}
 
@@ -88,22 +83,22 @@ func FetchDate()(models.DateResponse, error){
 
 }
 
-func FetchRelation()(models.RelationResponse, error){
-	
+func FetchRelation() (models.RelationResponse, error) {
+
 	resp, err := http.Get(relationURL)
-	if err != nil{
+	if err != nil {
 		return models.RelationResponse{}, err
 	}
 	defer resp.Body.Close()
 
-	if resp.StatusCode != http.StatusOK{
+	if resp.StatusCode != http.StatusOK {
 		return models.RelationResponse{}, fmt.Errorf("Unexpected status code: %s", resp.Status)
 	}
 
 	var relations models.RelationResponse
 
 	err = json.NewDecoder(resp.Body).Decode(&relations)
-	if err != nil{
+	if err != nil {
 		return models.RelationResponse{}, err
 	}
 
