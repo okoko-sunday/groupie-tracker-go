@@ -26,3 +26,24 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+
+
+
+
+
+/*
+func ArtistHandler(w http.ResponseWriter, r *http.Request){
+	path := r.URL.Path
+
+	part := strings.Split(path, "/")
+
+	splitPart, err := strconv.Atoi(part[2])
+	if err != nil{
+		log.Println(err)
+		return
+	}
+}
+
+
+
+*/
