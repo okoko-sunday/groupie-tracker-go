@@ -5,6 +5,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strconv"
+	"strings"
 )
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
@@ -26,6 +28,41 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+
+
+func ArtistHandler(w http.ResponseWriter, r *http.Request){
+	path := r.URL.Path
+
+	parts := strings.Split(path, "/")
+
+	if len(parts) != 3 || parts[2] == "" {
+		http.NotFound(w, r)
+		return
+	}
+
+	idPart, err := strconv.Atoi(parts[2])
+
+	// a better error handling is needed here than this, use http.Error
+	if err != nil{
+		log.Println(err)
+		return
+	}
+
+	artist, err := api.FetchArtists()
+	if err != nil {
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+		log.Println("internal server error")
+		return
+	}
+
+	for _, artistId := range artist{
+		if idPart == artistId.ID{
+
+		}
+	}
+}
+
+
 
 
 
